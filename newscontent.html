@@ -1,0 +1,78 @@
+{include file="common/header"  title="新闻中心" /}
+{tagdata name="newsCate,newsContent" /}
+<style>
+@import url('{$setting.web_view}/static/css/article.css');
+</style>
+ <section class="content-warp" style="margin-top: 100px;">
+		<div class="container">
+	        <div class="row">
+	        	        <div class="col-12 primary-content">
+<div class="row" style="margin-top: 30px;">
+	<div class="col-md-9">
+		<div class="article-content bg-white">
+            <ol class="breadcrumb entry-breadcrumb">
+	            	            <li><i class="fa fa-home mr-1"></i> <a href="https://www.binyum.cn/">门户首页</a></li>
+	            	            <li><a href="https://www.binyum.cn/news/">行业新闻</a></li>
+	            	        </ol>
+            <div class="article-body">
+	            <article class="entry py-3">
+		        	<div class="entry-head">
+                        <h1 class="entry-title">{$newsContent.title}</h1>
+                        <div class="entry-info">
+                            <span>{$newsContent.push_time | date='Y-m-d H:i'}</span>
+                            <span class="dot">•</span>
+                            <a href="https://modulesocean.com/news/" rel="category tag">行业新闻</a>
+                            <span class="dot">•</span>
+                            <span>阅读 {$newsContent.read}</span>
+                        </div>
+                    </div>
+                    <div class="entry-content">
+	                	<div><a target="_blank" rel="noopener"><img src="{$newsContent.label}"></a></div>
+{$newsContent.content}
+                    </div>
+                    <div class="entry-footer">
+                    </div>
+	            </article>
+            </div>
+		</div>
+		
+	</div>
+	<div class="col-md-3">
+				<div class="article-sidebar">
+
+					<div class="widget widget_recent_entries">
+						<h3 class="widget-title"><span>分类目录</span></h3>
+						<ul>
+				        								<li>
+								<a href="">行业新闻</a>
+							</li>
+				        								<li>
+								<a href="index5.html">站内通知</a>
+							</li>
+				        								<li>
+								<a href="index3.html">帮助文档</a>
+							</li>
+				        							</ul>
+					</div>
+
+					<div class="widget widget_post_thumb">
+						<h3 class="widget-title"><span>近期文章</span></h3>
+						<ul>
+{volist name="$newsListCate.list" id="vo" offset="0" length='10' empty="暂时没有数据"}
+<li>
+							<a href="/newscontent/{$vo.id}.html">{$vo.title}</a>
+						</li>
+{/volist}
+
+				        							</ul>
+					</div>
+
+				</div>
+			</div>
+</div>
+
+			</div>
+		</div>
+	</div>
+</section>
+{include file="common/footer"  /}

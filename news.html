@@ -1,0 +1,86 @@
+{include file="common/header"  title="新闻中心" /}
+{tagdata name="newsCate,newsListCate" /}
+<style>
+@import url('{$setting.web_view}/static/css/article.css');
+</style>
+<section class="article-section space2x" style="margin-top: 150px;">
+    <div class="container">
+		<div class="row" style="margin-top: 30px;">
+			<div class="col-md-9">
+				<div class="article-content bg-white">
+					<div class="article-header">
+		                <h1 class="">行业新闻</h1>
+		            </div>
+		            {if empty($newsCate)} 
+		            <div class="article-body">
+			        	<ul class="article-list">
+				        						        	<li class="item">
+									暂时没有任何内容
+								</li>
+										        	</ul>
+		            </div>
+		            {else/}
+		            <div class="article-body">
+			        	<ul class="article-list">
+			        	    {foreach $newsListCate.list as $key=>$vo }
+				        	  <li class="item"> 
+                  <div class="item-img"> 
+         <a href="/newscontent/{$vo.id}.html" title="{$vo.title}" target="_blank"> <img width="480" height="300" src="{if condition="$vo.parent_id==4"}{$setting.web_view}/static/image/banner/newstoday.png{elseif condition="$vo.parent_id==3"}{$setting.web_view}/static/image/banner/newsdt.png{else/}{$setting.web_view}/static/image/banner/newsgf.png{/if}" alt="{$vo.title}" style="display: inline;" /> </a> 
+   </div> 
+   <div class="item-content"> 
+    <h2 class="item-title"> <a href="/newscontent/{$vo.id}.html" title="{$vo.title}">{$vo.title}</a> </h2> 
+    <div class="item-excerpt"> 
+     <p>{$vo.description}</p> 
+    </div> 
+    <div class="item-meta"> 
+     <a class="item-meta-li" href="/newscontent/{$vo.id}.html" target="_blank">{if condition="$vo.parent_id==4"}站内通知{elseif condition="$vo.parent_id==3"}行业新闻{else/}其他{/if}</a> 
+     <span class="item-meta-li date">{$newsContent.push_time | date='Y-m-d H:i'}</span> 
+     <span class="item-meta-li views" title="阅读数"><i class="fa fa-eye"></i>{$vo.read}</span> 
+    </div> 
+   </div> </li>
+   {/foreach}
+				        	</ul>
+		            </div>
+		            {/if}
+		            <div class="article-foot">
+			        	
+		            </div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="article-sidebar">
+
+					<div class="widget widget_recent_entries">
+						<h3 class="widget-title"><span>分类目录</span></h3>
+						<ul>
+				        								<li>
+								<a href="">行业新闻</a>
+							</li>
+				        								<li>
+								<a href="index5.html">站内通知</a>
+							</li>
+				        								<li>
+								<a href="index3.html">帮助文档</a>
+							</li>
+				        							</ul>
+					</div>
+
+					<div class="widget widget_post_thumb">
+						<h3 class="widget-title"><span>近期文章</span></h3>
+						<ul>
+{volist name="$newsListCate.list" id="vo" offset="0" length='10' empty="暂时没有数据"}
+<li>
+							<a href="/newscontent/{$vo.id}.html">{$vo.title}</a>
+						</li>
+{/volist}
+
+				        							</ul>
+					</div>
+
+				</div>
+			</div>
+		</div>
+    </div>
+</section>
+
+{include file="common/footer"}
